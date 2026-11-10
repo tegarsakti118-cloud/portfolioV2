@@ -4,61 +4,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0f172a">
-  <meta name="description" content="Portofolio Angga, web developer.">
-  <title>Tegar | Web Developer Portfolio</title>
+  <meta name="description" content="Portofolio Tegar Sakti - Junior Web Developer & Frontend Enthusiast.">
+  <title>Tegar Sakti | Web Developer Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
-      theme: { extend: {
-        colors: { primary: '#2563eb', accent: '#60a5fa' },
-        fontFamily: { sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'] }
-      }}
+      theme: { 
+        extend: {
+          colors: { 
+            primary: '#2563eb', 
+            accent: '#3b82f6' 
+          },
+          fontFamily: { 
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'] 
+          }
+        }
+      }
     };
   </script>
+
+  <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
     :root { color-scheme: light; }
     html { scroll-padding-top: 88px; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .dark { color-scheme: dark; }
-    .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+
+    /* Glassmorphism */
+    .glass { 
+      backdrop-filter: blur(16px); 
+      -webkit-backdrop-filter: blur(16px); 
+    }
+
+    /* Organic blob photo background */
     .blob { border-radius: 44% 56% 62% 38% / 42% 43% 57% 58%; }
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+
+    /* Scroll Reveal Animations */
+    .reveal { 
+      opacity: 0; 
+      transform: translateY(22px); 
+      transition: opacity .65s ease, transform .65s ease; 
+    }
     .reveal.show { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
+    .delay-1 { transition-delay: .1s; } 
+    .delay-2 { transition-delay: .2s; } 
+    .delay-3 { transition-delay: .3s; }
+
+    /* Nav Link Underline */
     .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -7px; width: 0; height: 2px; background: #2563eb; transition: width .2s; }
+    .nav-link::after { 
+      content: ''; 
+      position: absolute; 
+      left: 0; 
+      bottom: -6px; 
+      width: 0; 
+      height: 2px; 
+      background: #2563eb; 
+      transition: width .25s ease; 
+      border-radius: 99px;
+    }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Custom Scrollbar Utility */
     .no-scrollbar { scrollbar-width: none; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
-    .btn { transition: transform .2s, background-color .2s, box-shadow .2s; }
+
+    /* Buttons */
+    .btn { transition: transform .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease; }
     .btn:active { transform: scale(.97); }
+
+    /* Welcome / Splash Screen */
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #020617;
+      color: #fff;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #welcome-screen.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
-<body class="bg-white text-slate-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+<body class="bg-slate-50/50 text-slate-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 selection:bg-blue-600 selection:text-white">
  
-<!-- Welcome Screen -->
-<div id="welcome-screen">
-  <div class="welcome-content">
-    <p class="welcome-label">WELCOME TO</p>
-    <h1 id="welcome-text"></h1>
-    <div class="welcome-line"></div>
-    <p class="welcome-subtitle">Junior Web Developer</p>
+  <!-- Welcome Screen / Preloader -->
+  <div id="welcome-screen">
+    <div class="text-center px-4">
+      <p class="text-xs font-bold uppercase tracking-[0.3em] text-blue-500 mb-2">Welcome</p>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Tegar Sakti<span class="text-blue-500">.</span></h1>
+      <div class="h-1 w-12 bg-blue-600 mx-auto my-3 rounded-full"></div>
+      <p class="text-sm text-slate-400 font-medium">Junior Web Developer</p>
+      <div class="mt-6 flex justify-center">
+        <div class="h-6 w-6 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
+      </div>
+    </div>
   </div>
-</div>
 
   <!-- NAVBAR -->
-  <header class="glass fixed inset-x-0 top-0 z-50 border-b border-slate-200/70 bg-white/85 dark:border-slate-800/80 dark:bg-slate-950/85">
+  <header class="glass fixed inset-x-0 top-0 z-40 border-b border-slate-200/80 bg-white/80 dark:border-slate-800/80 dark:bg-slate-950/80">
     <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
-      <a href="#home" class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white" aria-label="Angga, ke beranda">Tegar<span class="text-blue-600">.</span></a>
+      <a href="#home" class="text-2xl font-black tracking-tight text-slate-900 dark:text-white" aria-label="Tegar, ke beranda">
+        Tegar<span class="text-blue-600">.</span>
+      </a>
+
+      <!-- Desktop Nav -->
       <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 dark:text-slate-300 md:flex" aria-label="Navigasi utama">
         <a class="nav-link" href="#home">Home</a>
         <a class="nav-link" href="#about">Tentang</a>
@@ -67,473 +136,655 @@
         <a class="nav-link" href="#experience">Pengalaman</a>
         <a class="nav-link" href="#contact">Kontak</a>
       </nav>
+
+      <!-- Action Buttons -->
       <div class="flex items-center gap-2">
-        <button id="themeToggle" class="btn grid h-10 w-10 place-items-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-yellow-300 dark:hover:bg-slate-700" aria-label="Ganti tema" title="Ganti tema">
+        <button id="themeToggle" class="btn grid h-10 w-10 place-items-center rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-yellow-400 dark:hover:bg-slate-800" aria-label="Ganti tema" title="Ganti tema">
           <i id="themeIcon" class="fa-solid fa-moon"></i>
         </button>
-        <button id="menuToggle" class="btn grid h-10 w-10 place-items-center rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 md:hidden" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+        <button id="menuToggle" class="btn grid h-10 w-10 place-items-center rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 md:hidden" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
           <i id="menuIcon" class="fa-solid fa-bars text-lg"></i>
         </button>
       </div>
     </div>
-    <nav id="mobileMenu" class="hidden border-t border-slate-200 bg-white px-5 py-3 dark:border-slate-800 dark:bg-slate-950 md:hidden" aria-label="Navigasi mobile">
-      <a class="mobile-link block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" href="#home">Home</a>
-      <a class="mobile-link block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" href="#about">Tentang</a>
-      <a class="mobile-link block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" href="#skills">Keahlian</a>
-      <a class="mobile-link block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" href="#projects">Proyek</a>
-      <a class="mobile-link block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" href="#experience">Pengalaman</a>
-      <a class="mobile-link block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" href="#contact">Kontak</a>
+
+    <!-- Mobile Nav -->
+    <nav id="mobileMenu" class="hidden border-t border-slate-200 bg-white/95 px-5 py-4 dark:border-slate-800 dark:bg-slate-950/95 md:hidden" aria-label="Navigasi mobile">
+      <div class="flex flex-col space-y-1">
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-semibold hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-900 dark:hover:text-blue-400" href="#home">Home</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-semibold hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-900 dark:hover:text-blue-400" href="#about">Tentang</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-semibold hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-900 dark:hover:text-blue-400" href="#skills">Keahlian</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-semibold hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-900 dark:hover:text-blue-400" href="#projects">Proyek</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-semibold hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-900 dark:hover:text-blue-400" href="#experience">Pengalaman</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-semibold hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-900 dark:hover:text-blue-400" href="#contact">Kontak</a>
+      </div>
     </nav>
   </header>
 
   <main class="pt-[72px]">
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <section id="home" class="relative isolate overflow-hidden">
-      <div class="pointer-events-none absolute -right-24 top-10 -z-10 h-72 w-72 rounded-full bg-blue-200/50 blur-3xl dark:bg-blue-900/25"></div>
-      <div class="mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:py-20">
+      <!-- Glow background circles -->
+      <div class="pointer-events-none absolute -right-20 top-0 -z-10 h-96 w-96 rounded-full bg-blue-300/30 blur-3xl dark:bg-blue-900/20"></div>
+      <div class="pointer-events-none absolute -left-20 bottom-10 -z-10 h-72 w-72 rounded-full bg-indigo-300/20 blur-3xl dark:bg-indigo-900/15"></div>
+
+      <div class="mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-12 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:py-20">
         <div class="order-2 lg:order-1">
-          <p class="reveal inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-bold tracking-wider text-blue-700 dark:border-blue-900 dark:bg-blue-950/60 dark:text-blue-300"><span class="h-2 w-2 rounded-full bg-blue-500"></span> WELCOME TO MY PORTOFOLIO</p>
-          <h1 class="reveal delay-1 mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">Halo, saya <span class="text-blue-600">Tegar.</span><br>Junior Web Developer</h1>
-          <p class="reveal delay-2 mt-6 max-w-xl leading-8 text-slate-600 dark:text-slate-300">Saya lulusan SMK jurusan Teknik Komputer dan Jaringan yang sedang mengembangkan keterampilan di bidang web development. Saya tertarik membangun website yang responsif, modern, dan mudah digunakan.</p>
-          <div class="reveal delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#projects" class="btn inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700">Lihat Proyek <i class="fa-solid fa-arrow-right text-xs"></i></a>
-            <a href="#contact" class="btn inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-bold hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:hover:border-blue-500">Hubungi Saya</a>
-            <a href="https://drive.google.com/file/d/1-ZUBGSpx3RL8NLaQ71sJr4c7QEZdSRdX/view"
-   target="_blank"
-   class="px-6 py-3 rounded-xl bg-blue-600
-          text-white font-semibold hover:bg-blue-700">
+          <!-- Status Pill -->
+          <div class="reveal inline-flex items-center gap-2.5 rounded-full border border-blue-200/80 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur-sm dark:border-blue-900/80 dark:bg-blue-950/60 dark:text-blue-300">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Welcome To My Portofolio
+          </div>
 
-  <i class="fa-solid fa-download mr-2"></i>
-  Download CV
+          <h1 class="reveal delay-1 mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
+            Halo, saya <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Tegar.</span><br>
+            Junior Web Developer
+          </h1>
+          
+          <p class="reveal delay-2 mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+            Lulusan SMK jurusan Teknik Komputer dan Jaringan yang berfokus pada pengembangan web frontend. Suka membuat antarmuka website yang bersih, responsif, dan mudah digunakan.
+          </p>
 
+          <!-- Action buttons -->
+          <div class="reveal delay-3 mt-8 flex flex-wrap items-center gap-3">
+            <a href="#projects" class="btn inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-700 hover:shadow-blue-600/40">
+              Lihat Proyek <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a href="https://drive.google.com/file/d/1-ZUBGSpx3RL8NLaQ71sJr4c7QEZdSRdX/view" target="_blank" rel="noopener noreferrer" class="btn inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 shadow-sm hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-blue-500">
+              <i class="fa-solid fa-download text-xs"></i> Download CV
+            </a>
+            <a href="#contact" class="btn inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-bold text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400">
+              Hubungi Saya
             </a>
           </div>
-          <div class="reveal delay-3 mt-8 flex items-center gap-5 text-xl text-slate-500 dark:text-slate-400">
-            <!-- Ganti # dengan URL media sosial milikmu -->
-            <a href="https://github.com/tegarsakti118-cloud" aria-label="Github" class="hover:text-blue-600"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.tiktok.com/@tegarskti404" aria-label="Tiktok" class="hover:text-blue-600"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/tegarskti404" aria-label="Instagram" class="hover:text-blue-600"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/6281373273173" aria-label="WhatsApp" class="hover:text-blue-600"><i class="fa-brands fa-whatsapp"></i></a>
+
+          <!-- Socials -->
+          <div class="reveal delay-3 mt-9 flex items-center gap-4 text-slate-500 dark:text-slate-400">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Temukan saya:</span>
+            <div class="flex items-center gap-2.5">
+              <a href="https://github.com/tegarsakti118-cloud" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-blue-500 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500">
+                <i class="fa-brands fa-github text-base"></i>
+              </a>
+              <a href="https://www.instagram.com/tegarskti404" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-pink-500 hover:text-pink-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-pink-500">
+                <i class="fa-brands fa-instagram text-base"></i>
+              </a>
+              <a href="https://www.tiktok.com/@tegarskti404" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-slate-900 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-white dark:hover:text-white">
+                <i class="fa-brands fa-tiktok text-base"></i>
+              </a>
+              <a href="https://wa.me/6281373273173" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-500">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+              </a>
+            </div>
           </div>
         </div>
+
+        <!-- Profile Photo -->
         <div class="reveal relative order-1 mx-auto flex w-full max-w-md items-center justify-center lg:order-2">
-          <div class="blob absolute h-64 w-64 bg-gradient-to-br from-blue-100 to-blue-300 sm:h-80 sm:w-80 lg:h-[410px] lg:w-[410px] dark:from-blue-950 dark:to-blue-700"></div>
-          <div class="relative z-10 grid h-64 w-56 place-items-center overflow-hidden rounded-[2rem] border-4 border-white/80 bg-slate-200 shadow-2xl shadow-blue-900/10 sm:h-[390px] sm:w-[300px] dark:border-slate-800 dark:bg-slate-800">
-            <img src="images/popo.jpg" alt="Foto profil Angga" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-            <div class="hidden h-full w-full place-items-center text-center text-slate-500"><i class="fa-solid fa-user text-5xl"></i><span class="mt-3 text-sm">Ganti dengan foto kamu</span></div>
+          <div class="blob absolute h-64 w-64 bg-gradient-to-tr from-blue-300 via-indigo-200 to-blue-400 opacity-60 blur-xl sm:h-80 sm:w-80 lg:h-[400px] lg:w-[400px] dark:from-blue-900 dark:via-blue-800 dark:to-indigo-900"></div>
+          <div class="relative z-10 grid h-72 w-64 place-items-center overflow-hidden rounded-[2.5rem] border-4 border-white bg-slate-100 shadow-2xl shadow-blue-950/15 sm:h-[400px] sm:w-[320px] dark:border-slate-800 dark:bg-slate-800">
+            <img src="images/popo.jpg" alt="Foto profil Tegar Sakti" class="h-full w-full object-cover transition duration-500 hover:scale-105" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="hidden h-full w-full place-items-center text-center p-6 text-slate-400">
+              <div>
+                <i class="fa-solid fa-user-tie text-5xl mb-3 text-blue-500"></i>
+                <p class="text-sm font-semibold">Tegar Sakti</p>
+                <p class="text-xs text-slate-500 mt-1">Web Developer</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
+    <!-- ABOUT SECTION -->
+    <section id="about" class="bg-white py-20 dark:bg-slate-900/60 sm:py-24 border-y border-slate-200/60 dark:border-slate-800/60">
       <div class="mx-auto max-w-7xl px-5 sm:px-8">
         <div class="mx-auto max-w-2xl text-center">
-          <p class="reveal text-sm font-bold uppercase tracking-[.2em] text-blue-600">Tentang Saya</p>
-          <h2 class="reveal delay-1 mt-3 text-3xl font-extrabold sm:text-4xl">Sedikit tentang saya</h2>
-          <p class="reveal delay-2 mt-5 leading-8 text-slate-600 dark:text-slate-300">Saya senang mempelajari teknologi web dan membuat tampilan digital yang rapi serta nyaman digunakan.</p>
+          <p class="reveal text-xs font-bold uppercase tracking-[.25em] text-blue-600 dark:text-blue-400">Tentang Saya</p>
+          <h2 class="reveal delay-1 mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl text-slate-900 dark:text-white">Dedikasi Belajar & Berkembang</h2>
+          <p class="reveal delay-2 mt-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+            Saya memiliki ketertarikan tinggi pada dunia pengembangan web. Menggabungkan logika teknis dari latar belakang jaringan dengan estetika antarmuka modern.
+          </p>
         </div>
-        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="reveal rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"><i class="fa-solid fa-code text-xl text-blue-600"></i><h3 class="mt-4 font-bold">Fokus</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Frontend development dan desain website.</p></div>
-          <div class="reveal delay-1 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"><i class="fa-solid fa-graduation-cap text-xl text-blue-600"></i><h3 class="mt-4 font-bold">Pendidikan</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">SMKN 01 TULANG BAWANG TENGAH Jurusan TKJ.</p></div>
-          <div class="reveal delay-2 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"><i class="fa-solid fa-location-dot text-xl text-blue-600"></i><h3 class="mt-4 font-bold">Lokasi</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Tubaba, Lampung</p></div>
-          <div class="reveal delay-3 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"><i class="fa-solid fa-envelope text-xl text-blue-600"></i><h3 class="mt-4 font-bold">Email</h3><p class="mt-2 break-all text-sm leading-6 text-slate-500 dark:text-slate-400">tegarsakti118@gmail.com</p></div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 transition hover:-translate-y-1 hover:border-blue-400 dark:border-slate-800 dark:bg-slate-950">
+            <div class="grid h-12 w-12 place-items-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+              <i class="fa-solid fa-code text-xl"></i>
+            </div>
+            <h3 class="mt-4 font-bold text-slate-900 dark:text-white">Fokus Utama</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Frontend Web Development, slicing UI/UX, dan responsive design.</p>
+          </div>
+
+          <div class="reveal delay-1 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 transition hover:-translate-y-1 hover:border-blue-400 dark:border-slate-800 dark:bg-slate-950">
+            <div class="grid h-12 w-12 place-items-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+              <i class="fa-solid fa-graduation-cap text-xl"></i>
+            </div>
+            <h3 class="mt-4 font-bold text-slate-900 dark:text-white">Pendidikan</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">SMKN 01 Tulang Bawang Tengah (Jurusan Teknik Komputer & Jaringan).</p>
+          </div>
+
+          <div class="reveal delay-2 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 transition hover:-translate-y-1 hover:border-blue-400 dark:border-slate-800 dark:bg-slate-950">
+            <div class="grid h-12 w-12 place-items-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+              <i class="fa-solid fa-location-dot text-xl"></i>
+            </div>
+            <h3 class="mt-4 font-bold text-slate-900 dark:text-white">Domisili</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Tulang Bawang Barat (Tubaba), Lampung, Indonesia.</p>
+          </div>
+
+          <div class="reveal delay-3 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 transition hover:-translate-y-1 hover:border-blue-400 dark:border-slate-800 dark:bg-slate-950">
+            <div class="grid h-12 w-12 place-items-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+              <i class="fa-solid fa-envelope-open text-xl"></i>
+            </div>
+            <h3 class="mt-4 font-bold text-slate-900 dark:text-white">Email Kontak</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 break-all dark:text-slate-400">tegarsakti118@gmail.com</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS SECTION -->
     <section id="skills" class="py-20 sm:py-24">
       <div class="mx-auto max-w-7xl px-5 sm:px-8">
-        <div class="reveal"><p class="text-sm font-bold uppercase tracking-[.2em] text-blue-600">Keahlian</p><h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Tools yang saya gunakan</h2><p class="mt-4 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">Teknologi yang biasa saya gunakan untuk mengembangkan website modern.
+        <div class="reveal max-w-2xl">
+          <p class="text-xs font-bold uppercase tracking-[.25em] text-blue-600 dark:text-blue-400">Keahlian & Tools</p>
+          <h2 class="mt-2 text-3xl font-extrabold sm:text-4xl text-slate-900 dark:text-white">Teknologi yang Saya Kuasai</h2>
+          <p class="mt-4 text-base text-slate-600 dark:text-slate-300">
+            Perangkat lunak dan teknologi yang biasa saya gunakan dalam membangun website yang cepat dan responsif.
+          </p>
+        </div>
 
-</p></div>
-        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="reveal rounded-2xl border border-slate-200 p-5 dark:border-slate-800"><div class="flex items-center gap-3"><i class="fa-brands fa-html5 text-2xl text-orange-500"></i><span class="font-bold">HTML</span></div><div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800"><div class="h-2 w-[85%] rounded-full bg-blue-600"></div></div></div>
-          <div class="reveal delay-1 rounded-2xl border border-slate-200 p-5 dark:border-slate-800"><div class="flex items-center gap-3"><i class="fa-brands fa-css3-alt text-2xl text-blue-500"></i><span class="font-bold">CSS / Tailwind CSS</span></div><div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800"><div class="h-2 w-[70%] rounded-full bg-blue-600"></div></div></div>
-          <div class="reveal delay-2 rounded-2xl border border-slate-200 p-5 dark:border-slate-800"><div class="flex items-center gap-3"><i class="fa-brands fa-js text-2xl text-yellow-500"></i><span class="font-bold">JavaScript</span></div><div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800"><div class="h-2 w-[45%] rounded-full bg-blue-600"></div></div></div>
-          <div class="reveal rounded-2xl border border-slate-200 p-5 dark:border-slate-800"><div class="flex items-center gap-3"><i class="fa-brands fa-git-alt text-2xl text-orange-600"></i><span class="font-bold">Git</span></div><div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800"><div class="h-2 w-[40%] rounded-full bg-blue-600"></div></div></div>
-          <div class="reveal delay-1 rounded-2xl border border-slate-200 p-5 dark:border-slate-800"><div class="flex items-center gap-3"><i class="fa-solid fa-mobile-screen-button text-2xl text-blue-600"></i><span class="font-bold">Responsive Design</span></div><div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800"><div class="h-2 w-[75%] rounded-full bg-blue-600"></div></div></div>
-          <div class="reveal delay-2 rounded-2xl border border-slate-200 p-5 dark:border-slate-800"><div class="flex items-center gap-3"><i class="fa-solid fa-pen-ruler text-2xl text-purple-500"></i><span class="font-bold">UI Design</span></div><div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800"><div class="h-2 w-[60%] rounded-full bg-blue-600"></div></div></div>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Skill Card -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <i class="fa-brands fa-html5 text-2xl text-orange-500"></i>
+                <span class="font-bold">HTML5 Semantic</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-400">85%</span>
+            </div>
+            <div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
+              <div class="h-2 w-[85%] rounded-full bg-blue-600"></div>
+            </div>
+          </div>
+
+          <div class="reveal delay-1 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <i class="fa-brands fa-css3-alt text-2xl text-blue-500"></i>
+                <span class="font-bold">CSS3 & Tailwind CSS</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-400">75%</span>
+            </div>
+            <div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
+              <div class="h-2 w-[75%] rounded-full bg-blue-600"></div>
+            </div>
+          </div>
+
+          <div class="reveal delay-2 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <i class="fa-brands fa-js text-2xl text-yellow-500"></i>
+                <span class="font-bold">JavaScript (ES6+)</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-400">60%</span>
+            </div>
+            <div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
+              <div class="h-2 w-[60%] rounded-full bg-blue-600"></div>
+            </div>
+          </div>
+
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <i class="fa-brands fa-git-alt text-2xl text-orange-600"></i>
+                <span class="font-bold">Git & GitHub</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-400">65%</span>
+            </div>
+            <div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
+              <div class="h-2 w-[65%] rounded-full bg-blue-600"></div>
+            </div>
+          </div>
+
+          <div class="reveal delay-1 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-mobile-screen-button text-2xl text-emerald-500"></i>
+                <span class="font-bold">Responsive Web Design</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-400">80%</span>
+            </div>
+            <div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
+              <div class="h-2 w-[80%] rounded-full bg-blue-600"></div>
+            </div>
+          </div>
+
+          <div class="reveal delay-2 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-network-wired text-2xl text-purple-500"></i>
+                <span class="font-bold">Networking & TKJ</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-400">75%</span>
+            </div>
+            <div class="mt-4 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
+              <div class="h-2 w-[75%] rounded-full bg-blue-600"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="bg-white py-20 dark:bg-slate-900/60 sm:py-24 border-t border-slate-200/60 dark:border-slate-800/60">
       <div class="mx-auto max-w-7xl px-5 sm:px-8">
-        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div class="reveal"><p class="text-sm font-bold uppercase tracking-[.2em] text-blue-600">Proyek Pilihan</p><h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Beberapa karya saya</h2></div>
-          <div class="reveal flex items-end gap-5">
-            <p class="max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">Proyek yang saya buat sambil terus belajar dan berlatih. Geser untuk melihat proyek lainnya.</p>
-            <div id="projectNav" class="hidden shrink-0 gap-2 sm:flex">
-              <button id="projPrev" type="button" aria-label="Proyek sebelumnya" class="btn grid h-10 w-10 place-items-center rounded-full border border-slate-300 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-              <button id="projNext" type="button" aria-label="Proyek berikutnya" class="btn grid h-10 w-10 place-items-center rounded-full border border-slate-300 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+        <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div class="reveal">
+            <p class="text-xs font-bold uppercase tracking-[.25em] text-blue-600 dark:text-blue-400">Portofolio Karya</p>
+            <h2 class="mt-2 text-3xl font-extrabold sm:text-4xl text-slate-900 dark:text-white">Proyek Pilihan</h2>
+          </div>
+          <div class="reveal flex items-center gap-4">
+            <p class="hidden sm:block max-w-xs text-xs text-slate-500 dark:text-slate-400">Geser atau gunakan tombol untuk melihat karya lainnya.</p>
+            <div id="projectNav" class="flex gap-2">
+              <button id="projPrev" type="button" aria-label="Proyek sebelumnya" class="btn grid h-10 w-10 place-items-center rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 disabled:opacity-30 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+              </button>
+              <button id="projNext" type="button" aria-label="Proyek berikutnya" class="btn grid h-10 w-10 place-items-center rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 disabled:opacity-30 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+              </button>
             </div>
           </div>
         </div>
 
-        <div class="reveal mt-10">
-        <div id="projectTrack" class="no-scrollbar -mx-1 flex snap-x snap-mandatory scroll-px-1 gap-6 overflow-x-auto scroll-smooth px-1 pb-6 pt-1" tabindex="0" role="region" aria-label="Daftar proyek, geser untuk melihat proyek lainnya">
+        <!-- Project Track -->
+        <div class="reveal mt-8">
+          <div id="projectTrack" class="no-scrollbar -mx-2 flex snap-x snap-mandatory scroll-px-2 gap-6 overflow-x-auto scroll-smooth px-2 pb-6 pt-2" tabindex="0" role="region" aria-label="Daftar proyek">
 
-         <!-- Project 3 -->
-          <article class="group flex w-[88%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-300 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-900/5 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-blue-800">
-            <div class="p-3 pb-0">
-              <a href="https://bisnis-centr-ppob.vercel.app" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true" class="block overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
-                <div class="flex items-center gap-1.5 border-b border-slate-200 bg-white px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-950">
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="ml-3 min-w-0 flex-1 truncate rounded-md bg-slate-100 px-3 py-1 text-[11px] text-slate-500 dark:bg-slate-900 dark:text-slate-400">https://bisnis-centr-ppob.vercel.app</span>
-                </div>
-                <div class="relative aspect-[16/10] overflow-hidden">
-                  <img class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]" src="images/proyek3.jpg" alt="Pratinjau aplikasi manajemen tugas Fokusin" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-                  <div class="hidden h-full w-full place-items-center bg-gradient-to-br from-blue-50 to-slate-100 text-center text-slate-400 dark:from-slate-900 dark:to-slate-800"><div><i class="fa-regular fa-image text-4xl"></i><p class="mt-3 text-sm">Pratinjau belum tersedia</p></div></div>
-                </div>
-              </a>
-            </div>
-            <div class="flex flex-1 flex-col p-6 sm:p-7">
-              <span class="inline-flex w-fit items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"><i class="fa-solid fa-layer-group text-[11px]"></i>Nexora</span>
-              <h3 class="mt-4 text-xl font-extrabold tracking-tight">Nexora</h3>
-              <p class="mt-2 max-w-prose text-sm leading-7 text-slate-600 dark:text-slate-400">NEXORA adalah aplikasi manajemen bisnis berbasis web yang dirancang untuk membantu mengelola transaksi, keuangan, perpindahan saldo, komisi, dan laporan bisnis dalam satu platform modern. Dilengkapi dashboard interaktif dan tampilan responsif untuk memudahkan pengelolaan bisnis.</p>
-              <ul class="mt-5 flex flex-wrap gap-2" aria-label="Teknologi yang digunakan">
-                <li class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">JavaScript</li>
-                <li class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">CSS</li>
-              </ul>
-              <div class="mt-auto border-t border-slate-100 pt-5 dark:border-slate-800">
-                <a href="https://bisnis-centr-ppob.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Buka proyek <i class="fa-solid fa-arrow-up-right-from-square text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i></a>
+            <!-- Project 1: Nexora -->
+            <article class="group flex w-[90%] sm:w-[420px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/50 shadow-sm transition duration-300 hover:border-blue-400 hover:shadow-xl dark:border-slate-800 dark:bg-slate-950">
+              <div class="p-3 pb-0">
+                <a href="https://bisnis-centr-ppob.vercel.app" target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
+                  <div class="flex items-center gap-1.5 border-b border-slate-200 bg-white px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-900">
+                    <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-yellow-400"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-green-400"></span>
+                    <span class="ml-2 truncate text-[11px] text-slate-400 font-mono">bisnis-centr-ppob.vercel.app</span>
+                  </div>
+                  <div class="relative aspect-[16/10] overflow-hidden">
+                    <img class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105" src="images/proyek3.jpg" alt="Pratinjau Nexora" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                    <div class="hidden h-full w-full place-items-center bg-slate-100 text-slate-400 dark:bg-slate-800"><i class="fa-regular fa-image text-3xl"></i></div>
+                  </div>
+                </a>
               </div>
-            </div>
-          </article>
-          
-          <!-- Project 1 -->
-          <article class="group flex w-[88%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-300 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-900/5 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-blue-800">
-            <div class="p-3 pb-0">
-              <a href="https://tegarsakti118-cloud.github.io/Sakapay/#lokasi" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true" class="block overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
-                <div class="flex items-center gap-1.5 border-b border-slate-200 bg-white px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-950">
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="ml-3 min-w-0 flex-1 truncate rounded-md bg-slate-100 px-3 py-1 text-[11px] text-slate-500 dark:bg-slate-900 dark:text-slate-400">tegarsakti118-cloud.github.io/Sakapay</span>
+              <div class="flex flex-1 flex-col p-6">
+                <div class="flex items-center justify-between">
+                  <span class="rounded-lg bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700 dark:bg-blue-950 dark:text-blue-300">Management App</span>
                 </div>
-                <div class="relative aspect-[16/10] overflow-hidden">
-                  <img class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]" src="images/proyek1.jpg" alt="Pratinjau proyek website bisnis" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-                  <div class="hidden h-full w-full place-items-center bg-gradient-to-br from-blue-50 to-slate-100 text-center text-slate-400 dark:from-slate-900 dark:to-slate-800"><div><i class="fa-regular fa-image text-4xl"></i><p class="mt-3 text-sm">Pratinjau belum tersedia</p></div></div>
+                <h3 class="mt-3 text-xl font-bold text-slate-900 dark:text-white">Nexora Business Center</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  Aplikasi manajemen bisnis berbasis web untuk mengelola transaksi, komisi, saldo, dan pembukuan dengan tampilan dashboard interaktif.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">JavaScript</span>
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">CSS Modern</span>
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">PPOB</span>
                 </div>
-              </a>
-            </div>
-            <div class="flex flex-1 flex-col p-6 sm:p-7">
-              <span class="inline-flex w-fit items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"><i class="fa-solid fa-globe text-[11px]"></i>Website</span>
-              <h3 class="mt-4 text-xl font-extrabold tracking-tight">Website Bisnis</h3>
-              <p class="mt-2 max-w-prose text-sm leading-7 text-slate-600 dark:text-slate-400">Landing page sederhana untuk memperkenalkan layanan atau produk dengan tampilan yang rapi dan mudah dibaca.</p>
-              <ul class="mt-5 flex flex-wrap gap-2" aria-label="Teknologi yang digunakan">
-                <li class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">HTML</li>
-                <li class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">Tailwind CSS</li>
-              </ul>
-              <div class="mt-auto border-t border-slate-100 pt-5 dark:border-slate-800">
-                <a href="https://tegarsakti118-cloud.github.io/Sakapay/#lokasi" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Buka proyek <i class="fa-solid fa-arrow-up-right-from-square text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i></a>
+                <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <a href="https://bisnis-centr-ppob.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    Buka Aplikasi <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                  </a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project 2 -->
-          <article class="group flex w-[88%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-300 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-900/5 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-blue-800">
-            <div class="p-3 pb-0">
-              <a href="https://tegarsakti118-cloud.github.io/fokusapk/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true" class="block overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
-                <div class="flex items-center gap-1.5 border-b border-slate-200 bg-white px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-950">
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span>
-                  <span class="ml-3 min-w-0 flex-1 truncate rounded-md bg-slate-100 px-3 py-1 text-[11px] text-slate-500 dark:bg-slate-900 dark:text-slate-400">tegarsakti118-cloud.github.io/fokusapk</span>
-                </div>
-                <div class="relative aspect-[16/10] overflow-hidden">
-                  <img class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]" src="images/proyek2.jpg" alt="Pratinjau aplikasi manajemen tugas Fokusin" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-                  <div class="hidden h-full w-full place-items-center bg-gradient-to-br from-blue-50 to-slate-100 text-center text-slate-400 dark:from-slate-900 dark:to-slate-800"><div><i class="fa-regular fa-image text-4xl"></i><p class="mt-3 text-sm">Pratinjau belum tersedia</p></div></div>
-                </div>
-              </a>
-            </div>
-            <div class="flex flex-1 flex-col p-6 sm:p-7">
-              <span class="inline-flex w-fit items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"><i class="fa-solid fa-layer-group text-[11px]"></i>Web App</span>
-              <h3 class="mt-4 text-xl font-extrabold tracking-tight">Fokusin</h3>
-              <p class="mt-2 max-w-prose text-sm leading-7 text-slate-600 dark:text-slate-400">Aplikasi web manajemen tugas harian yang interaktif dan responsif di semua perangkat, dirancang agar pengguna tetap fokus dan produktif.</p>
-              <ul class="mt-5 flex flex-wrap gap-2" aria-label="Teknologi yang digunakan">
-                <li class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">JavaScript</li>
-                <li class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">CSS</li>
-              </ul>
-              <div class="mt-auto border-t border-slate-100 pt-5 dark:border-slate-800">
-                <a href="https://tegarsakti118-cloud.github.io/fokusapk/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Buka proyek <i class="fa-solid fa-arrow-up-right-from-square text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i></a>
+            <!-- Project 2: Sakapay -->
+            <article class="group flex w-[90%] sm:w-[420px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/50 shadow-sm transition duration-300 hover:border-blue-400 hover:shadow-xl dark:border-slate-800 dark:bg-slate-950">
+              <div class="p-3 pb-0">
+                <a href="https://tegarsakti118-cloud.github.io/Sakapay/#lokasi" target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
+                  <div class="flex items-center gap-1.5 border-b border-slate-200 bg-white px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-900">
+                    <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-yellow-400"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-green-400"></span>
+                    <span class="ml-2 truncate text-[11px] text-slate-400 font-mono">tegarsakti118-cloud.github.io/Sakapay</span>
+                  </div>
+                  <div class="relative aspect-[16/10] overflow-hidden">
+                    <img class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105" src="images/proyek1.jpg" alt="Pratinjau Website Bisnis Sakapay" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                    <div class="hidden h-full w-full place-items-center bg-slate-100 text-slate-400 dark:bg-slate-800"><i class="fa-regular fa-image text-3xl"></i></div>
+                  </div>
+                </a>
               </div>
-            </div>
-          </article>
+              <div class="flex flex-1 flex-col p-6">
+                <div class="flex items-center justify-between">
+                  <span class="rounded-lg bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700 dark:bg-blue-950 dark:text-blue-300">Company Landing</span>
+                </div>
+                <h3 class="mt-3 text-xl font-bold text-slate-900 dark:text-white">Sakapay Landing Page</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  Website landing page responsif untuk mempromosikan layanan pembayaran & produk digital dengan integrasi lokasi peta.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">HTML5</span>
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">Tailwind CSS</span>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <a href="https://tegarsakti118-cloud.github.io/Sakapay/#lokasi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    Buka Proyek <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
 
-          
+            <!-- Project 3: Fokusin -->
+            <article class="group flex w-[90%] sm:w-[420px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/50 shadow-sm transition duration-300 hover:border-blue-400 hover:shadow-xl dark:border-slate-800 dark:bg-slate-950">
+              <div class="p-3 pb-0">
+                <a href="https://tegarsakti118-cloud.github.io/fokusapk/" target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
+                  <div class="flex items-center gap-1.5 border-b border-slate-200 bg-white px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-900">
+                    <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-yellow-400"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-green-400"></span>
+                    <span class="ml-2 truncate text-[11px] text-slate-400 font-mono">tegarsakti118-cloud.github.io/fokusapk</span>
+                  </div>
+                  <div class="relative aspect-[16/10] overflow-hidden">
+                    <img class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105" src="images/proyek2.jpg" alt="Pratinjau Fokusin" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                    <div class="hidden h-full w-full place-items-center bg-slate-100 text-slate-400 dark:bg-slate-800"><i class="fa-regular fa-image text-3xl"></i></div>
+                  </div>
+                </a>
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <div class="flex items-center justify-between">
+                  <span class="rounded-lg bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700 dark:bg-blue-950 dark:text-blue-300">Productivity Web App</span>
+                </div>
+                <h3 class="mt-3 text-xl font-bold text-slate-900 dark:text-white">Fokusin Task Manager</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  Aplikasi web manajemen tugas harian yang simpel, interaktif, dan responsif agar pengguna tetap produktif setiap hari.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">JavaScript</span>
+                  <span class="rounded-md bg-slate-200/70 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">DOM Manipulation</span>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <a href="https://tegarsakti118-cloud.github.io/fokusapk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    Buka Aplikasi <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
 
-
+          </div>
         </div>
-        </div>
 
-        <div class="reveal mt-4 text-center">
-          <a href="https://github.com/tegarsakti118-cloud" target="_blank" rel="noopener noreferrer" class="btn inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:hover:border-blue-500"><i class="fa-brands fa-github text-base"></i>Lihat proyek lain di GitHub</a>
+        <div class="reveal mt-8 text-center">
+          <a href="https://github.com/tegarsakti118-cloud" target="_blank" rel="noopener noreferrer" class="btn inline-flex items-center gap-2.5 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 shadow-sm hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:hover:border-blue-500">
+            <i class="fa-brands fa-github text-lg"></i> Lihat Repositori Lainnya di GitHub
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- EXPERIENCE SECTION -->
     <section id="experience" class="py-20 sm:py-24">
       <div class="mx-auto max-w-4xl px-5 sm:px-8">
-        <div class="reveal text-center"><p class="text-sm font-bold uppercase tracking-[.2em] text-blue-600">Pengalaman</p><h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Perjalanan belajar</h2><p class="mt-4 leading-7 text-slate-600 dark:text-slate-300"></p></div>
-        <div class="relative mt-10 space-y-6 before:absolute before:bottom-5 before:left-[9px] before:top-2 before:w-px before:bg-slate-200 dark:before:bg-slate-700">
-          <div class="reveal relative pl-9"><span class="absolute left-0 top-1.5 h-5 w-5 rounded-full border-4 border-blue-600 bg-white dark:bg-slate-950"></span><p class="text-xs font-bold uppercase tracking-wider text-blue-600">2025 – Sekarang</p><h3 class="mt-2 text-lg font-bold">Belajar Web Development</h3><p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">Mempelajari dasar HTML, CSS, JavaScript, desain responsif, dan membangun proyek latihan.</p></div>
-          <div class="reveal relative pl-9"><span class="absolute left-0 top-1.5 h-5 w-5 rounded-full border-4 border-blue-600 bg-white dark:bg-slate-950"></span><p class="text-xs font-bold uppercase tracking-wider text-blue-600">28 April - 28 Agustus 2025</p><h3 class="mt-2 text-lg font-bold">PKL di PT.Oreo Smart Access</h3><p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">Saya melaksanakan PKL di PT Oreo Smart Access dengan pengalaman dalam konfigurasi dan monitoring jaringan, troubleshooting jaringan, serta pendataan barang dan perangkat IT.</p></div>
+        <div class="reveal text-center">
+          <p class="text-xs font-bold uppercase tracking-[.25em] text-blue-600 dark:text-blue-400">Pengalaman & Riwayat</p>
+          <h2 class="mt-2 text-3xl font-extrabold sm:text-4xl text-slate-900 dark:text-white">Perjalanan Belajar & Praktik</h2>
+        </div>
+
+        <div class="relative mt-12 space-y-8 before:absolute before:bottom-3 before:left-[11px] before:top-3 before:w-[2px] before:bg-slate-200 dark:before:bg-slate-800">
+          <!-- Timeline item 1 -->
+          <div class="reveal relative pl-9">
+            <span class="absolute left-0 top-1 h-6 w-6 rounded-full border-4 border-white bg-blue-600 shadow-md dark:border-slate-950"></span>
+            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">2025 – Sekarang</span>
+              <h3 class="mt-1 text-lg font-bold text-slate-900 dark:text-white">Eksplorasi Frontend Web Development</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                Fokus mendalami fundamental web (HTML, CSS modern, JavaScript), implementasi framework utilitas seperti Tailwind CSS, serta membangun proyek web aplikasi nyata secara mandiri.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline item 2 -->
+          <div class="reveal relative pl-9">
+            <span class="absolute left-0 top-1 h-6 w-6 rounded-full border-4 border-white bg-blue-600 shadow-md dark:border-slate-950"></span>
+            <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">28 April – 28 Agustus 2025</span>
+              <h3 class="mt-1 text-lg font-bold text-slate-900 dark:text-white">Praktik Kerja Lapangan (PKL) – PT Oreo Smart Access</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                Bertanggung jawab dalam konfigurasi dan monitoring jaringan, troubleshooting koneksi, instalasi perangkat keras, serta inventarisasi peralatan IT perusahaan.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-<section id="contact" class="py-20 bg-slate-50 dark:bg-slate-900">
-  <div class="max-w-6xl mx-auto px-6">
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="bg-slate-100/70 py-20 dark:bg-slate-900/60 sm:py-24 border-t border-slate-200/60 dark:border-slate-800/60">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+          
+          <!-- Contact Left Column -->
+          <div class="reveal lg:col-span-5">
+            <p class="text-xs font-bold uppercase tracking-[.25em] text-blue-600 dark:text-blue-400">Kontak</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
+              Ayo Diskusikan <span class="text-blue-600">Proyekmu!</span>
+            </h2>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              Punya tawaran kerja sama, proyek freelance, atau sekadar ingin bertanya? Jangan ragu untuk menghubungi saya melalui kontak di bawah ini.
+            </p>
 
-    <!-- Heading -->
-    <div class="mb-10">
-      <p class="text-blue-600 font-bold tracking-widest mb-8">
-        CONTACT
-      </p>
+            <div class="mt-8 space-y-4">
+              <a href="mailto:tegarsakti118@gmail.com" class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-blue-400 dark:border-slate-800 dark:bg-slate-950">
+                <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+                  <i class="fa-solid fa-envelope text-lg"></i>
+                </div>
+                <div class="min-w-0">
+                  <p class="text-xs font-semibold text-slate-400">Email Langsung</p>
+                  <p class="truncate text-sm font-bold text-slate-800 dark:text-white">tegarsakti118@gmail.com</p>
+                </div>
+              </a>
 
-      <h2 class="text-4xl md:text-5xl font-bold leading-tight text-slate-900 dark:text-white">
-        Ayo Ngobrol Soal
-        <span class="text-blue-600">Proyekmu</span>
-      </h2>
+              <a href="https://wa.me/6281373273173" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-400 dark:border-slate-800 dark:bg-slate-950">
+                <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
+                  <i class="fa-brands fa-whatsapp text-xl"></i>
+                </div>
+                <div class="min-w-0">
+                  <p class="text-xs font-semibold text-slate-400">WhatsApp Chat</p>
+                  <p class="text-sm font-bold text-slate-800 dark:text-white">+62 813-7327-3173</p>
+                </div>
+              </a>
 
-      <p class="mt-6 text-lg md:text-xl text-slate-500 leading-relaxed">
-        Punya ide website atau ingin berkolaborasi?
-        Kirim pesan melalui kontak di bawah ini.
-      </p>
-    </div>
+              <div class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+                <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
+                  <i class="fa-solid fa-location-dot text-lg"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-slate-400">Lokasi</p>
+                  <p class="text-sm font-bold text-slate-800 dark:text-white">Tubaba, Lampung, ID</p>
+                </div>
+              </div>
+            </div>
 
-    <!-- Contact Information -->
-    <div class="space-y-5 mb-12">
+            <!-- Support Me Link Separated -->
+            <div class="mt-6">
+              <a href="https://sociabuzz.com/sakapay/tribe" target="_blank" rel="noopener noreferrer" class="btn inline-flex items-center justify-center gap-2.5 w-full rounded-2xl border-2 border-pink-500/60 bg-pink-50/50 py-3.5 text-sm font-bold text-pink-600 hover:bg-pink-100 transition dark:bg-pink-950/20 dark:hover:bg-pink-950/40">
+                <i class="fa-solid fa-heart text-pink-500"></i> Dukung Karya Saya di SociaBuzz
+              </a>
+            </div>
+          </div>
 
-      <a href="mailto:tegarsakti118@gmail.com"
-         class="flex items-center gap-5">
-        <div class="w-16 h-16 flex items-center justify-center
-                    rounded-2xl bg-blue-50 text-blue-600">
-          <i class="fa-solid fa-envelope text-2xl"></i>
-        </div>
-        <div>
-          <p class="text-slate-400 font-semibold">Email</p>
-          <p class="text-lg font-semibold text-slate-800 dark:text-white">
-            tegarsakti118@gmail.com
-          </p>
-        </div>
-      </a>
+          <!-- Contact Right Column (Form) -->
+          <div class="reveal delay-1 lg:col-span-7">
+            <form action="https://formsubmit.co/tegarsakti118@gmail.com" method="POST" class="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-sm dark:border-slate-800 dark:bg-slate-950 space-y-5">
+              <!-- FormSubmit config -->
+              <input type="hidden" name="_subject" value="Pesan Baru dari Website Portofolio">
+              <input type="hidden" name="_captcha" value="false">
+              <!-- Supaya setelah kirim pesan langsung balik ke web kamu -->
+              <input type="hidden" name="_next" value="https://sakaa.my.id/#contact">
 
-      <a href="https://wa.me/6281373273173"
-         target="_blank" rel="noopener noreferrer"
-         class="flex items-center gap-5">
-        <div class="w-16 h-16 flex items-center justify-center
-                    rounded-2xl bg-blue-50 text-blue-600">
-          <i class="fa-brands fa-whatsapp text-2xl"></i>
-        </div>
-        <div>
-          <p class="text-slate-400 font-semibold">WhatsApp</p>
-          <p class="text-lg font-semibold text-slate-800 dark:text-white">
-            +62 813-7327-3173
-          </p>
-        </div>
-      </a>
+              <div>
+                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2">Nama Lengkap</label>
+                <input id="name" type="text" name="name" placeholder="Masukkan nama Anda" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-blue-600 focus:bg-white dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:focus:border-blue-500">
+              </div>
 
-      <div class="flex items-center gap-5">
-        <div class="w-16 h-16 flex items-center justify-center
-                    rounded-2xl bg-blue-50 text-blue-600">
-          <i class="fa-solid fa-location-dot text-2xl"></i>
-        </div>
-        <div>
-          <p class="text-slate-400 font-semibold">Lokasi</p>
-          <p class="text-lg font-semibold text-slate-800 dark:text-white">
-            Tubaba, Lampung
-          </p>
+              <div>
+                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2">Alamat Email</label>
+                <input id="email" type="email" name="email" placeholder="contoh@domain.com" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-blue-600 focus:bg-white dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:focus:border-blue-500">
+              </div>
+
+              <div>
+                <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2">Pesan Anda</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tuliskan pesan, ide proyek, atau kebutuhan Anda..." required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-blue-600 focus:bg-white dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:focus:border-blue-500 resize-none"></textarea>
+              </div>
+
+              <button type="submit" class="btn flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-4 text-sm font-bold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-700">
+                Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+            </form>
+          </div>
+
         </div>
       </div>
-
-    </div>
-
-    <!-- Contact Form -->
-    <form action="https://formsubmit.co/tegarsakti118@gmail.com"
-          method="POST"
-          class="bg-white dark:bg-slate-800 p-6 md:p-10
-                 rounded-3xl border border-slate-200
-                 dark:border-slate-700 space-y-6">
-
-      <input type="hidden" name="_subject"
-             value="Pesan dari Portfolio Website">
-
-      <input type="hidden" name="_captcha" value="false">
-
-      <div>
-        <label for="name"
-               class="block font-semibold mb-3 text-slate-700 dark:text-white">
-          Nama
-        </label>
-        <input id="name" type="text" name="name"
-               placeholder="Nama kamu" required
-               class="w-full p-4 rounded-2xl border border-slate-200
-                      bg-slate-50 dark:bg-slate-700 dark:border-slate-600
-                      dark:text-white outline-none focus:border-blue-500">
-      </div>
-
-      <div>
-        <label for="email"
-               class="block font-semibold mb-3 text-slate-700 dark:text-white">
-          Email
-        </label>
-        <input id="email" type="email" name="email"
-               placeholder="email@kamu.com" required
-               class="w-full p-4 rounded-2xl border border-slate-200
-                      bg-slate-50 dark:bg-slate-700 dark:border-slate-600
-                      dark:text-white outline-none focus:border-blue-500">
-      </div>
-
-      <div>
-        <label for="message"
-               class="block font-semibold mb-3 text-slate-700 dark:text-white">
-          Pesan
-        </label>
-        <textarea id="message" name="message" rows="5"
-                  placeholder="Ceritakan kebutuhanmu..."
-                  required
-                  class="w-full p-4 rounded-2xl border border-slate-200
-                         bg-slate-50 dark:bg-slate-700 dark:border-slate-600
-                         dark:text-white outline-none focus:border-blue-500"></textarea>
-      </div>
-
-      <button type="submit"
-              class="w-full py-4 rounded-2xl bg-blue-600
-                     hover:bg-blue-700 text-white font-bold
-                     transition">
-        Kirim Pesan <i class="fa-solid fa-paper-plane ml-2"></i>
-      </button>
-
-      
-<a href="https://sociabuzz.com/sakapay/tribe"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="flex items-center justify-center gap-2 w-full
-          mt-4 py-4 rounded-2xl
-          border-2 border-pink-500 text-pink-600
-          font-bold hover:bg-pink-50 transition">
-
-  <i class="fa-solid fa-heart"></i>
-  Support Me
-
-</a>
-
-
-    </form>
-
-  </div>
-</section>
-
+    </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="border-t border-slate-200 bg-white py-6 dark:border-slate-800 dark:bg-slate-950">
     <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 text-center text-xs text-slate-500 sm:flex-row sm:px-8">
-      <p>© <span id="year"></span> Tegar Dev. All Rights Reserved</p>
-      <a href="#home" class="font-semibold hover:text-blue-600">Kembali ke atas ↑</a>
+      <p>© <span id="year"></span> Tegar Sakti. All Rights Reserved.</p>
+      <a href="#home" class="font-semibold text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400">
+        Kembali ke atas <i class="fa-solid fa-arrow-up ml-1 text-[10px]"></i>
+      </a>
     </div>
   </footer>
 
+  <!-- JAVASCRIPT -->
   <script>
-    // Theme toggle, menyimpan pilihan selama browser masih mendukung localStorage.
+    // 1. Welcome Screen Preloader auto fade-out
+    window.addEventListener('load', () => {
+      const welcome = document.getElementById('welcome-screen');
+      if (welcome) {
+        setTimeout(() => {
+          welcome.classList.add('fade-out');
+          setTimeout(() => welcome.remove(), 650);
+        }, 900);
+      }
+    });
+
+    // 2. Theme Toggle (Dark & Light Mode)
     const root = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
-    try {
-      if (localStorage.getItem('portfolio-theme') === 'dark') root.classList.add('dark');
-    } catch (e) {}
-    function updateThemeIcon() {
-      themeIcon.className = root.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+
+    function initTheme() {
+      try {
+        const saved = localStorage.getItem('portfolio-theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          root.classList.add('dark');
+        }
+      } catch (e) {}
+      updateThemeIcon();
     }
-    updateThemeIcon();
+
+    function updateThemeIcon() {
+      themeIcon.className = root.classList.contains('dark') ? 'fa-solid fa-sun text-yellow-400' : 'fa-solid fa-moon text-slate-700';
+    }
+
+    initTheme();
+
     themeToggle.addEventListener('click', () => {
       root.classList.toggle('dark');
-      try { localStorage.setItem('portfolio-theme', root.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+      try {
+        localStorage.setItem('portfolio-theme', root.classList.contains('dark') ? 'dark' : 'light');
+      } catch (e) {}
       updateThemeIcon();
     });
 
-    // Mobile navigation.
+    // 3. Mobile Navigation Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuIcon = document.getElementById('menuIcon');
-    menuToggle.addEventListener('click', () => {
-      const opening = mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      menuToggle.setAttribute('aria-expanded', String(opening));
-      menuToggle.setAttribute('aria-label', opening ? 'Tutup menu' : 'Buka menu');
-      menuIcon.className = opening ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
-    });
-    document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Buka menu');
-      menuIcon.className = 'fa-solid fa-bars text-lg';
-    }));
 
-    // Scroll reveal with a fallback if IntersectionObserver is unavailable.
+    menuToggle.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuIcon.className = !isOpen ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuIcon.className = 'fa-solid fa-bars text-lg';
+      });
+    });
+
+    // 4. Scroll Reveal (IntersectionObserver)
     const revealItems = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
+      const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('show');
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.1 });
       revealItems.forEach(item => observer.observe(item));
     } else {
       revealItems.forEach(item => item.classList.add('show'));
     }
 
-    // Highlight the current navbar section.
+    // 5. Active Navbar Link Highlight
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('header nav a[href^="#"]');
     if ('IntersectionObserver' in window) {
-      const sectionObserver = new IntersectionObserver(entries => {
+      const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
           }
         });
-      }, { rootMargin: '-30% 0px -60% 0px' });
-      sections.forEach(section => sectionObserver.observe(section));
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      sections.forEach(sec => sectionObserver.observe(sec));
     }
-    // Carousel proyek: tombol panah aktif otomatis kalau proyek lebih dari yang muat di layar.
+
+    // 6. Project Carousel Slider Controls
     (function () {
       const track = document.getElementById('projectTrack');
       const prev = document.getElementById('projPrev');
       const next = document.getElementById('projNext');
       const nav = document.getElementById('projectNav');
       if (!track || !prev || !next) return;
+
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      function update() {
-        const overflow = track.scrollWidth > track.clientWidth + 2;
-        nav.style.display = overflow ? '' : 'none';
-        prev.disabled = track.scrollLeft <= 2;
-        next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+
+      function updateNav() {
+        const overflow = track.scrollWidth > track.clientWidth + 5;
+        if (nav) nav.style.display = overflow ? 'flex' : 'none';
+        prev.disabled = track.scrollLeft <= 4;
+        next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
       }
-      function go(dir) {
+
+      function scrollDir(dir) {
         const card = track.querySelector('article');
-        const step = card ? card.offsetWidth + 24 : track.clientWidth;
+        const step = card ? card.offsetWidth + 24 : 320;
         track.scrollBy({ left: dir * step, behavior: reduce ? 'auto' : 'smooth' });
       }
-      prev.addEventListener('click', () => go(-1));
-      next.addEventListener('click', () => go(1));
-      track.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      window.addEventListener('load', update);
-      update();
+
+      prev.addEventListener('click', () => scrollDir(-1));
+      next.addEventListener('click', () => scrollDir(1));
+      track.addEventListener('scroll', updateNav, { passive: true });
+      window.addEventListener('resize', updateNav);
+      updateNav();
     })();
+
+    // 7. Dynamic Footer Year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
